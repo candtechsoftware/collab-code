@@ -1,0 +1,76 @@
+{
+  "name": "git-presence",
+  "displayName": "Git Presence",
+  "description": "See when others are editing files in your Git repository",
+  "version": "0.1.0",
+  "publisher": "candtech",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Other",
+    "SCM Providers"
+  ],
+  "activationEvents": [
+    "workspaceContains:.git"
+  ],
+  "main": "./out/extenstion.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "git-presence.connect",
+        "title": "Git Presence: Connect to server"
+      },
+      {
+        "command": "git-presence.disconnect",
+        "title": "Git Presence: Disconnect from server"
+      }
+    ],
+    "configuration": {
+      "title": "Git Presence",
+      "properties": {
+        "gitPresence.serverUrl": {
+          "type": "string",
+          "default": "ws://localhost:3030",
+          "description": "WebSocket URL for the Git Presence server"
+        },
+        "gitPresence.showNotifications": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show notifications when other users edit files"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.2.0",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.60.0",
+    "@types/ws": "^8.5.4",
+    "@typescript-eslint/eslint-plugin": "^5.30.0",
+    "@typescript-eslint/parser": "^5.30.0",
+    "@vscode/test-electron": "^2.1.5",
+    "eslint": "^8.18.0",
+    "glob": "^8.0.3",
+    "mocha": "^10.0.0",
+    "typescript": "^4.9.5",
+    "vsce": "^2.9.2"
+  },
+  "dependencies": {
+    "ws": "^8.13.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/candtechsoftware/collab-code.git"
+  }
+}
